@@ -1,0 +1,58 @@
+[1;37mFeature:[0m Rippling API
+  Given the base URL is https://sandbox.rippling.com/api/platform/api
+  And the API responds with:
+  | ForURL                                   | Toaken | Report        | ReportDate               | ApiResponse                                                                                        | Status | GetDataResponse                                                                                                            | GetDataError          |
+  | https://sandbox.rippling.com/api         | 123456 | Hourly_Pay_FC | 2021-05-01T00:00:00.000Z | name,comp,type,workStart,workEnd\njames,4,hourly,2021-05-01T00:00:00.000Z,2021-05-01T00:00:00.000Z | 200    | [{"name": "james","comp":"4","type":"hourly","workStart":"2021-05-01T00:00:00.000Z","workEnd":"2021-05-01T00:00:00.000Z"}] |                       |
+  | https://sandbox.rippling.com/api/reports | 456789 | Hourly_Pay_CS | 2021-05-01T00:00:00.000Z | 403: Unauthorized Access                                                                           | 403    |                                                                                                                            | "Unauthroized Access" |
+
+  [1;37mScenario Outline:[0m calling with token                 [1;30m# features/rippling.feature:9[0m
+    [36mThen[0m 
+    [36mAnd[0m 
+    [36mGiven[0m 
+    [36mWhen[0m 
+
+    [1;37mExamples:[0m
+      | [36mToaken[0m | [36mReport[0m        | [36mReportDate[0m               | [36mGetDataResponse[0m                                                                                                            | [36mGetDataError[0m          |
+      | [33m123456[0m | [33mHourly_Pay_FC[0m | [33m2021-05-01T00:00:00.000Z[0m | [33m[{"name": "james","comp":"4","type":"hourly","workStart":"2021-05-01T00:00:00.000Z","workEnd":"2021-05-01T00:00:00.000Z"}][0m | [33m[0m                      |
+      | [33m456789[0m | [33mHourly_Pay_CS[0m | [33m2021-05-01T00:00:00.000Z[0m | [33m[0m                                                                                                                           | [33m"Unauthroized Access"[0m |
+
+2 scenarios ([33m2 undefined[0m)
+8 steps ([33m8 undefined[0m)
+558.406µs
+
+[33mYou can implement step definitions for undefined steps with these snippets:[0m
+[33m
+
+func iAmFetchingUseTheToken(arg1 string) error {
+	return godog.ErrPending
+}
+
+func iCallGetDataFor(arg1, arg2 string) error {
+	return godog.ErrPending
+}
+
+func theErrResponseShouldBe(arg1 string) error {
+	return godog.ErrPending
+}
+
+func theErrResponseShouldBe(arg1 string) error {
+	return godog.ErrPending
+}
+
+func theResponseShouldEqual(arg1 string) error {
+	return godog.ErrPending
+}
+
+func theResponseShouldEqualCompTypeWorkStartWorkEnd(arg1, arg2, arg3, arg4, arg5, arg6 string) error {
+	return godog.ErrPending
+}
+
+func InitializeScenario(ctx *godog.ScenarioContext) {
+	ctx.Step(`^I am fetching use the token "([^"]*)"$`, iAmFetchingUseTheToken)
+	ctx.Step(`^I call GetData "([^"]*)" for "([^"]*)"$`, iCallGetDataFor)
+	ctx.Step(`^the err response should be "([^"]*)"$`, theErrResponseShouldBe)
+	ctx.Step(`^the err response should be ""([^"]*)""$`, theErrResponseShouldBe)
+	ctx.Step(`^the response should equal "([^"]*)"$`, theResponseShouldEqual)
+	ctx.Step(`^the response should equal "\[{"([^"]*)": "([^"]*)","comp":"([^"]*)","type":"([^"]*)","workStart":"([^"]*)","workEnd":"([^"]*)"}\]"$`, theResponseShouldEqualCompTypeWorkStartWorkEnd)
+}
+[0m
